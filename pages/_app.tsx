@@ -1,9 +1,10 @@
+import theme from '@/app/theme';
 import { AppProps } from 'next/app';
 import { ThemeProvider } from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
-import theme from '../.next/styles/theme';
 
 const GlobalStyle = createGlobalStyle`
+    // override default page styles coming from the browser
     body {
         margin: 0;
         padding: 0;

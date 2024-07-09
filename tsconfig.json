@@ -32,7 +32,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    ".next/styles/theme.ts"
+    "src/app/theme.ts",
+    "src/app/components/LocationDialog/LocationDialog.styled"
   ],
   "exclude": [
     "node_modules"
