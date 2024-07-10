@@ -7,14 +7,8 @@ import React, { useState, useEffect, useCallback } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 0 1rem;
-    background: ${({ theme }) => theme.colors.BLUE_LIGHT};
-    color: ${({ theme }) => theme.colors.TEXT};
+    width: 100vw;
+    height: 100vh;
 `;
 
 const Home: React.FC = () => {
