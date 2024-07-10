@@ -23,8 +23,8 @@ const LocationDialog: React.FC<Props> = ({ location, onSetLocation }) => {
     };
 
     return (
-        <Styled.DialogContainer>
-            <h1>Enter Location</h1>
+        <Styled.Container>
+            <p>Enter Location</p>
             <Styled.Input
                 ref={inputRef}
                 type="text"
@@ -39,7 +39,7 @@ const LocationDialog: React.FC<Props> = ({ location, onSetLocation }) => {
                 onChange={(e) => setLongitude(e.target.value)}
             />
             <Styled.Button onClick={handleSetLocation}>Set Location</Styled.Button>
-        </Styled.DialogContainer>
+        </Styled.Container>
     );
 };
 

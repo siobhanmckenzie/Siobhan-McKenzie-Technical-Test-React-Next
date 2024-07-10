@@ -41,9 +41,9 @@ const useLocation = () => {
         getCurrentPosition();
     }, [getCurrentPosition]);
 
-    const memoizedLocation = useMemo(() => location, [location]);
+    const memoisedLocation = useMemo(() => location, [location]);
 
-    return { location: memoizedLocation, setLocation, error, permissionGranted };
+    return { location: memoisedLocation, setLocation, error, permissionGranted };
 };
 
 export default useLocation;

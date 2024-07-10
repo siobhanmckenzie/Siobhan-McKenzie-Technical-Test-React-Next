@@ -1,16 +1,33 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import useWeather from '../../hooks/useWeather';
 import * as Styled from './Weather.styled';
 import { Props } from './Weather.props';
 import { useForm, SubmitHandler } from "react-hook-form";
+import useLocation from '@/app/hooks/useLocation';
+import { LocationDialog } from '../LocationDialog';
 
-type Inputs = {
+type Inputs = { // react-hook-forms placeholder
     example: string,
     exampleRequired: string,
 };
 
-const Weather: React.FC<Props> = ({ latitude, longitude }) => {
-    const { weather, error, loading } = useWeather(latitude, longitude);
+const Weather = () => {
+    const { location, setLocation, permissionGranted } = useLocation();
+    const [showDialog, setShowDialog] = useState<boolean>(false);
+    const { weather, error, loading } = useWeather(location.latitude, location.longitude);
+
+    useEffect(() => {
+        if (permissionGranted === false) {
+            setShowDialog(true);
+        }
+    }, [permissionGranted]);
+
+    const handleSetLocation = useCallback((latitude: number, longitude: number) => {
+        setLocation({ latitude, longitude });
+        setShowDialog(false);
+    }, [setLocation]);
+
+    console.log("permissionGranted", permissionGranted)
 
     // start placeholdering an input field
     const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>();
@@ -31,30 +48,35 @@ const Weather: React.FC<Props> = ({ latitude, longitude }) => {
     // Could add: translations
 
     return (
-        <Styled.Container>
-            <Styled.WeatherContainer>
-                {/* TODO: need to update this h1 content */}
-                <Styled.OffScreenHeader>Weather at your location</Styled.OffScreenHeader>
-                <Styled.TopDateSettingsContainer>
-                    <Styled.H2>{new Date().toLocaleDateString('en-GB', { weekday: 'long' }).toUpperCase()}</Styled.H2>
-                    {/* borrowed this off-screen header setup from https://www.metoffice.gov.uk/ */}
-                    <Styled.CogIcon />
-                </Styled.TopDateSettingsContainer>
-                <Styled.MiddleDateLocationContainer>
+        <>
+            <Styled.Container>
 
-                    <p>date swiper</p>
-                    <p>input section</p>
+                <Styled.WeatherContainer>
+                    {/* TODO: need to update this h1 content */}
+                    <Styled.OffScreenHeader>Weather at your location</Styled.OffScreenHeader>
+                    <Styled.TopDateSettingsContainer>
+                        <Styled.H2>{new Date().toLocaleDateString('en-GB', { weekday: 'long' }).toUpperCase()}</Styled.H2>
+                        {/* borrowed this off-screen header setup from https://www.metoffice.gov.uk/ */}
+                        <Styled.CogIcon />
+                    </Styled.TopDateSettingsContainer>
+                    <Styled.MiddleDateLocationContainer>
 
-                </Styled.MiddleDateLocationContainer>
-                <h2>Weather at your location lat: {latitude} long: {longitude}</h2>
-                {/* {weather.hourly.time.map((time: Date, index: number) => (
+                        <p>date swiper</p>
+                        {showDialog && (
+                            <LocationDialog location={location} onSetLocation={handleSetLocation} />
+                        )}
+
+                    </Styled.MiddleDateLocationContainer>
+                    <h2>Weather at your location lat: {location.latitude} long: {location.longitude}</h2>
+                    {/* {weather.hourly.time.map((time: Date, index: number) => (
                     <div key={index}>
                         <p>Time: {time.toISOString()}</p>
                         <p>Temperature: {weather.hourly.temperature2m[index]}°C</p>
                     </div>
                 ))} */}
-            </Styled.WeatherContainer>
-        </Styled.Container>
+                </Styled.WeatherContainer>
+            </Styled.Container>
+        </>
     );
 };
 

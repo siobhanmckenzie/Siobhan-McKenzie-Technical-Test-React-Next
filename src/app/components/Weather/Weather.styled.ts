@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-import { CogIcon as HeroCogIcon } from "@heroicons/react/24/solid";
+import { Cog8ToothIcon as HeroCogIcon } from "@heroicons/react/24/solid";
 
 interface SkeletonProps {
     $width?: string;
