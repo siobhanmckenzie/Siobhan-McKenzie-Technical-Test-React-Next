@@ -1,6 +1,3 @@
-
-# Holland & Barrett Technical Test - Siobhan McKenzie
-
 ## Overview
 
 In this technical test, I've considered various aspects including accessibility, performance, and compliance with the brief. Here are some key points:
