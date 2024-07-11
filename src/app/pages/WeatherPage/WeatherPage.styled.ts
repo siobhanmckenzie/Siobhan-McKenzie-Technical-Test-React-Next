@@ -40,12 +40,8 @@ export const Container = styled.div<Props>`
     // Not shorthanded for readability
 
     justify-content: center;
-    height: 100%;
-
-    @media only screen and (min-width: 425px) {
-        height: 100vh;
-
-    }
+    min-height: 100%;
+    height: 100vh;
 
 `
 
@@ -59,6 +55,7 @@ export const WeatherContainer = styled.div`
     color: ${({ theme }) => theme.colors.WHITE};
     border-radius: 10px;
     width: 100%;
+    height: max-content;
 
     @media only screen and (min-width: 600px) {
         width: 400px;
