@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components';
+import { MapPinIcon as HeroMapIcon } from '@heroicons/react/24/solid'
 
 interface SkeletonProps {
     $width?: string;
@@ -77,9 +78,23 @@ export const ResponsiveGridContainer = styled(BaseContainer)`
     }
 `
 
+export const WeatherResponsiveContainer = styled(ResponsiveGridContainer)`
+justify-content: space-evenly;
+gap: 24px;
+`
+
+
+export const PinContainer = styled.div`
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    gap: 12px;
+}
+    `
+
 export const TopDateSettingsContainer = styled(ResponsiveGridContainer)`
     padding-top: 32px;
-    align-items: center;
+    align-items: flex-start;
 `
 
 export const MiddleDateLocationContainer = styled(ResponsiveGridContainer)`
@@ -87,8 +102,17 @@ export const MiddleDateLocationContainer = styled(ResponsiveGridContainer)`
     background-color: ${({ theme }) => theme.colors.CYAN_MEDIUM};
 `
 
+export const H1 = styled.h2`
+    font-size: 18px;
+    margin: 0;
+`
+
 export const H2 = styled.h2`
     font-size: 38px;
     margin: 0;
 `
 
+export const MapIcon = styled(HeroMapIcon)`
+    color: ${({ theme }) => theme.colors.WHITE};
+    width: 18px;
+`

@@ -3,6 +3,7 @@ import useWeather from '../../hooks/useWeather';
 import * as Styled from './Weather.styled';
 import useLocation from '@/app/hooks/useLocation';
 import { decodeWeatherCode } from '@/utils/weatherCodeDecoder';
+import WeatherIcon from '../WeatherIconComponent/WeatherIconComponent';
 
 
 const Weather = () => {
@@ -31,34 +32,36 @@ const Weather = () => {
     // TODO: accessibility
 
     return (
-        <Styled.Container key={reloadKey} $isFairWeather={[0, 1, 2, 3].includes(weather?.current.weather_code ?? 0)} >
+        <Styled.Container key={reloadKey} $isFairWeather={[0, 1].includes(weather?.current.weather_code ?? 0)} >
             <Styled.WeatherContainer>
-
                 <Styled.TopDateSettingsContainer>
                     <span>
+                        <Styled.H1 aria-label={permissionGranted ? `Weather at your current location (Latitude: ${location.latitude}, Longitude: ${location.longitude})` : "Weather in London, default location due to permission not granted"}>Weather</Styled.H1>
                         <Styled.H2>{new Date().toLocaleDateString('en-GB', { weekday: 'long' }).toUpperCase()}</Styled.H2>
-
-                        {/*  TODO: Address page reload */}
-                        {!permissionGranted &&
-                            <p>You haven't set your location, so your default location is set to London</p>
-                        }
                     </span>
+                    {/*  TODO: Address page reload */}
+
+
                 </Styled.TopDateSettingsContainer>
                 <Styled.MiddleDateLocationContainer>
                     <p>{today}</p>
+                    <Styled.PinContainer>
+                        <Styled.MapIcon />
+                        {permissionGranted ?
+                            <p>Your Location</p> :
+                            <p>Default</p>
+                        }
+
+                        {/* // I didn't implement translating the co-ordinates into a named location */}
+                    </Styled.PinContainer>
                 </Styled.MiddleDateLocationContainer>
 
                 {/* TODO: refactor into a card */}
 
-                <Styled.ResponsiveGridContainer>
-                    <span>
-                        <h1 aria-label={permissionGranted ? `Weather at your current location (Latitude: ${location.latitude}, Longitude: ${location.longitude})` : "Weather in London, default location due to permission not granted"}>Weather</h1>
-                        {/* <WeatherIconComponent weatherCode={weather?.current.weather_code ?? 0} /> */}
-
-                    </span>
+                <Styled.WeatherResponsiveContainer>
+                    <WeatherIcon weatherCode={weather?.current.weather_code ?? 0} variant="large" />
                     {weather?.current ? (
                         <div>
-                            <p>Time: {new Date(weather.current.time).toLocaleString()}</p>
                             <p>Condition: {decodeWeatherCode(weather.current.weather_code)}</p>
                             <p>Temperature: {weather.current.temperature_2m}°C</p>
                             <p>Feels like: {weather.current.apparent_temperature}°C</p>
@@ -67,7 +70,7 @@ const Weather = () => {
                     ) : (
                         <p>No data available</p>
                     )}
-                </Styled.ResponsiveGridContainer>
+                </Styled.WeatherResponsiveContainer>
             </Styled.WeatherContainer>
         </Styled.Container>
     );

@@ -1,3 +1,3 @@
-interface Props {
+export interface Props {
     weatherCode: number;
 }
