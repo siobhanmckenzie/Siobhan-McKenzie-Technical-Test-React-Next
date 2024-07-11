@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { WeatherData } from '../pages/WeatherPage/WeatherPage.types';
+import { WeatherData } from '../pages/WeatherPage/Weather.types';
 
 const API_URL = 'https://api.open-meteo.com/v1/forecast';
 
@@ -19,7 +19,7 @@ const useWeather = (latitude: number, longitude: number) => {
                 current: ["temperature_2m", "apparent_temperature", "precipitation", "weather_code"],
                 daily: ["weather_code", "temperature_2m_max", "temperature_2m_min", "precipitation_sum", "precipitation_probability_max"],
                 timezone: "Europe/London",
-                past_days: 7,
+                past_days: 0,
             };
 
             try {

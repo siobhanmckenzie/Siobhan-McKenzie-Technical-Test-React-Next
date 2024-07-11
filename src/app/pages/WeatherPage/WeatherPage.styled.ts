@@ -16,8 +16,8 @@ const shimmer = keyframes`
 `;
 
 export const Skeleton = styled.div<SkeletonProps>`
-  width: ${({ $width }) => $width || '100%'};
-  height: ${({ $height }) => $height || '100%'};
+  width: ${({ $width }) => $width || '80px'};
+  height: ${({ $height }) => $height || '80px'};
   background: #f6f7f8;
   background-image: linear-gradient(to right, #eeeeee 0%, #dddddd 50%, #eeeeee 100%);
   background-repeat: no-repeat;
@@ -78,22 +78,20 @@ export const ResponsiveGridContainer = styled(BaseContainer)`
     }
 `
 
-export const WeatherResponsiveContainer = styled(ResponsiveGridContainer)`
-    justify-content: space-evenly;
-    gap: 24px;
-    border: 4px solid ${({ theme }) => theme.colors.DARK_GREEN};
-    margin: 24px;
-    border-radius: 20px;
-`
-
-
 export const PinContainer = styled.div`
     display: grid;
     grid-template-columns: auto auto;
     align-items: center;
     gap: 12px;
-}
-    `
+    }
+`
+
+export const MiniCardContainer = styled.div`
+display: flex;
+flex-wrap: nowrap;
+
+
+`
 
 export const TopDateSettingsContainer = styled(ResponsiveGridContainer)`
     padding-top: 32px;
@@ -118,4 +116,8 @@ export const H2 = styled.h2`
 export const MapIcon = styled(HeroMapIcon)`
     color: ${({ theme }) => theme.colors.WHITE};
     width: 18px;
+`
+
+export const TitleContainer = styled.div`
+    margin: 0 32px;
 `
