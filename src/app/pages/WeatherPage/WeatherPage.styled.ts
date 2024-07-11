@@ -40,7 +40,7 @@ export const Container = styled.div<Props>`
     // Not shorthanded for readability
 
     justify-content: center;
-    min-height: 100%;
+    height: 100vh;
 `
 
 export const WeatherContainer = styled.div`
