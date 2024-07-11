@@ -11,7 +11,8 @@ const theme: DefaultTheme = {
     BLUE_LIGHT: '#C9E7FB',
     TEXT: '#1B2D25',
     YELLOW: '#FFD21F',
-    WHITE: "#FFFFFF"
+    WHITE: "#FFFFFF",
+    DARK_GREEN: "#2C535A"
   },
 };
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { WeatherData } from '../components/Weather/Weather.types';
+import { WeatherData } from '../pages/WeatherPage/WeatherPage.types';
 
 const API_URL = 'https://api.open-meteo.com/v1/forecast';
 

@@ -1,5 +1,5 @@
 
-import { Weather } from '@/app/components/Weather';
+import { Weather } from '@/app/pages/WeatherPage';
 import React from 'react';
 
 import styled from 'styled-components';

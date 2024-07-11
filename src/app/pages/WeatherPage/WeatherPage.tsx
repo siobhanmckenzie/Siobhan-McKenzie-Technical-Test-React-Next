@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import useWeather from '../../hooks/useWeather';
-import * as Styled from './Weather.styled';
+import * as Styled from './WeatherPage.styled';
 import useLocation from '@/app/hooks/useLocation';
 import { decodeWeatherCode } from '@/utils/weatherCodeDecoder';
-import WeatherIcon from '../WeatherIconComponent/WeatherIconComponent';
+import WeatherIcon from '../../components/WeatherIconComponent/WeatherIconComponent';
 
 
 const Weather = () => {
@@ -49,7 +49,7 @@ const Weather = () => {
                         <Styled.MapIcon />
                         {permissionGranted ?
                             <p>Your Location</p> :
-                            <p>Default</p>
+                            <p>Default (London)</p>
                         }
 
                         {/* // I didn't implement translating the co-ordinates into a named location */}

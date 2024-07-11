@@ -79,8 +79,11 @@ export const ResponsiveGridContainer = styled(BaseContainer)`
 `
 
 export const WeatherResponsiveContainer = styled(ResponsiveGridContainer)`
-justify-content: space-evenly;
-gap: 24px;
+    justify-content: space-evenly;
+    gap: 24px;
+    border: 4px solid ${({ theme }) => theme.colors.DARK_GREEN};
+    margin: 24px;
+    border-radius: 20px;
 `
 
 
