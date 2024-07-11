@@ -6,8 +6,8 @@ import WeatherIcon from '../WeatherIconComponent/WeatherIconComponent';
 interface WeatherData {
     weather_code: number;
     temperature_2m: number;
-    apparent_temperature: number;
-    precipitation: number;
+    apparent_temperature?: number;
+    precipitation?: number;
 }
 
 interface Props {

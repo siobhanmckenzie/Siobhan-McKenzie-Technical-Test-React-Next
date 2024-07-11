@@ -39,7 +39,6 @@ export const Container = styled.div<Props>`
     background-size: cover;
     // Not shorthanded for readability
     justify-content: center;
-    height: 100%;
 `
 
 export const WeatherContainer = styled.div`
@@ -73,8 +72,10 @@ export const ResponsiveGridContainer = styled(BaseContainer)`
     display: grid;
     grid-template-columns: auto;
     justify-content: space-between;
+    gap: 8px;
     @media only screen and (min-width: 400px) {
         grid-template-columns: auto auto;
+        gap: 0;
     }
 `
 
@@ -89,8 +90,6 @@ export const PinContainer = styled.div`
 export const MiniCardContainer = styled.div`
 display: flex;
 flex-wrap: nowrap;
-
-
 `
 
 export const TopDateSettingsContainer = styled(ResponsiveGridContainer)`

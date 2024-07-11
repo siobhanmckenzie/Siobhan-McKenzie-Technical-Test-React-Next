@@ -29,19 +29,14 @@ const Weather = () => {
         precipitation: weather.current.precipitation,
     };
 
-    const tomorrowsWeather = {
-        weather_code: weather.daily.weather_code[1],
-        temperature_2m: weather.daily.temperature_2m_max[1],
-        apparent_temperature: weather.daily.temperature_2m_min[1],
-        precipitation: weather.daily.precipitation_sum[1],
-    };
+    console.log(weather.daily.temperature_2m_max)
 
-    const followingDaysWeather = {
-        weather_code: weather.daily.weather_code[2],
-        temperature_2m: weather.daily.temperature_2m_max[2],
-        apparent_temperature: weather.daily.temperature_2m_min[2],
-        precipitation: weather.daily.precipitation_sum[2],
-    };
+    const generateSpecificDaysWeather = (num: number) => {
+        return {
+            weather_code: weather.daily.weather_code[num],
+            temperature_2m: weather.daily.temperature_2m_max[num],
+        }
+    }
 
 
     return (
@@ -69,15 +64,15 @@ const Weather = () => {
                     <Styled.H2>Your Next Few Days</Styled.H2>
                 </Styled.TitleContainer>
                 <Styled.ResponsiveGridContainer>
-                    {tomorrowsWeather && (
+                    {weather.daily.weather_code[1] && (
                         <Styled.MiniCardContainer>
-                            <WeatherCardComponent weather={tomorrowsWeather} variant="base" dayTitle={new Date(new Date().setDate(new Date().getDate() + 1)).toLocaleDateString('en-GB', { weekday: 'long' }).toUpperCase()} />
+                            <WeatherCardComponent weather={generateSpecificDaysWeather(1)} variant="base" dayTitle={new Date(new Date().setDate(new Date().getDate() + 1)).toLocaleDateString('en-GB', { weekday: 'long' }).toUpperCase()} />
                         </Styled.MiniCardContainer>
                     )}
 
-                    {followingDaysWeather && (
+                    {weather.daily.weather_code[1] && (
                         <Styled.MiniCardContainer>
-                            <WeatherCardComponent weather={followingDaysWeather} variant="base" dayTitle={new Date(new Date().setDate(new Date().getDate() + 2)).toLocaleDateString('en-GB', { weekday: 'long' }).toUpperCase()} />
+                            <WeatherCardComponent weather={generateSpecificDaysWeather(2)} variant="base" dayTitle={new Date(new Date().setDate(new Date().getDate() + 2)).toLocaleDateString('en-GB', { weekday: 'long' }).toUpperCase()} />
                         </Styled.MiniCardContainer>
                     )}</Styled.ResponsiveGridContainer>
             </Styled.WeatherContainer>
