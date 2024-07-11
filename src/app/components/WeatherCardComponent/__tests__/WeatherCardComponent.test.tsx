@@ -33,7 +33,7 @@ describe('WeatherCardComponent', () => {
   test('renders correctly with base variant', () => {
     renderWithTheme(<WeatherCardComponent weather={mockWeatherData} variant="base" dayTitle="Tomorrow" />);
 
-    expect(screen.getByText('Tomorrow')).toBeTruthy();
+    expect(screen.getByText('Tomorrow')).toBeTruthy(); // substitute for toBeInTheDocuments - project config needs a tweak
     expect(screen.getByText('18.9°C')).toBeTruthy();
   });
 
