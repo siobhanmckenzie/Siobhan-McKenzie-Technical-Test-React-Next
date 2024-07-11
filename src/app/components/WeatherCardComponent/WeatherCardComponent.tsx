@@ -2,19 +2,7 @@ import React from 'react';
 import * as Styled from './WeatherCardComponent.styled';
 import { getDecodedWeather } from '../../../utils/getDecodedWeather';
 import WeatherIcon from '../WeatherIconComponent/WeatherIconComponent';
-
-interface WeatherData {
-    weather_code: number;
-    temperature_2m: number;
-    apparent_temperature?: number;
-    precipitation?: number;
-}
-
-interface Props {
-    weather: WeatherData;
-    variant?: "base" | "large";
-    dayTitle?: string;
-}
+import { Props } from './WeatherCardComponent.props';
 
 const WeatherCardComponent = ({ weather, variant = "large", dayTitle = "Today" }: Props) => {
 

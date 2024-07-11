@@ -28,7 +28,7 @@ const useWeather = (latitude: number, longitude: number) => {
 
                 setWeather(data);
             } catch (error) {
-                console.error('Error fetching weather data:', error);
+                console.error('Error fetching weather data:', error); // would adjust this in prod
                 setError('Error fetching weather data');
             } finally {
                 setLoading(false);

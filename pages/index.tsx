@@ -1,11 +1,11 @@
 
-import { Weather } from '@/app/pages/WeatherPage';
+import { WeatherPage } from '@/app/pages/WeatherPage';
 import React from 'react';
 
 const Home = () => {
 
     return (
-        <Weather />
+        <WeatherPage />
     );
 };
 

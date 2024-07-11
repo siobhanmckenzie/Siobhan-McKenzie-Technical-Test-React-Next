@@ -9,7 +9,7 @@ interface Props {
     variant?: "base" | "large";
 }
 
-const WeatherIcon = ({ weatherCode, variant = "base" }: Props) => {
+const WeatherIconComponent = ({ weatherCode, variant = "base" }: Props) => {
     const theme = useTheme();
     const emoji = getWeatherEmoji(weatherCode);
 
@@ -24,4 +24,4 @@ const WeatherIcon = ({ weatherCode, variant = "base" }: Props) => {
     );
 };
 
-export default WeatherIcon;
+export default WeatherIconComponent;

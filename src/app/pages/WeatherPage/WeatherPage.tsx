@@ -4,7 +4,7 @@ import * as Styled from './WeatherPage.styled';
 import useLocation from '@/app/hooks/useLocation';
 import { WeatherCardComponent } from '@/app/components/WeatherCardComponent';
 
-const Weather = () => {
+const WeatherPage = () => {
     const { location, permissionGranted, reloadKey } = useLocation();
     const { weather, error, loading } = useWeather(location.latitude, location.longitude);
 
@@ -28,8 +28,6 @@ const Weather = () => {
         apparent_temperature: weather.current.apparent_temperature,
         precipitation: weather.current.precipitation,
     };
-
-    console.log(weather.daily.temperature_2m_max)
 
     const generateSpecificDaysWeather = (num: number) => {
         return {
@@ -86,4 +84,4 @@ const WeatherSkeleton = () => {
     );
 };
 
-export default Weather;
+export default WeatherPage;
