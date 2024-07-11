@@ -12,8 +12,10 @@ const theme: DefaultTheme = {
     BLUE_LIGHT: '#C9E7FB',
     TEXT: '#1B2D25',
     YELLOW: '#FFD21F',
-    WHITE: "#FFFFFF",
-    DARK_GREEN: "#2C535A"
+    WHITE: "#FFF",
+    DARK_GREEN: "#2C535A",
+    BLACK: "#000",
+
   },
 };
 

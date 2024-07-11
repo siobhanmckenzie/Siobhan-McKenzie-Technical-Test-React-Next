@@ -1,6 +1,6 @@
 import React from 'react';
 import * as Styled from './WeatherCardComponent.styled';
-import { decodeWeatherCode } from '@/utils/weatherCodeDecoder';
+import { getDecodedWeather } from '../../../utils/getDecodedWeather';
 import WeatherIcon from '../WeatherIconComponent/WeatherIconComponent';
 
 interface WeatherData {
@@ -16,7 +16,7 @@ interface Props {
     dayTitle?: string;
 }
 
-const WeatherCardComponent = ({ weather, variant = "large", dayTitle = "" }: Props) => {
+const WeatherCardComponent = ({ weather, variant = "large", dayTitle = "Today" }: Props) => {
 
     if (variant === "base") return (
         <Styled.MiniContainer>
@@ -30,11 +30,11 @@ const WeatherCardComponent = ({ weather, variant = "large", dayTitle = "" }: Pro
 
             {weather && <WeatherIcon weatherCode={weather.weather_code ?? 0} variant={variant} />}
             <div>
-
-                <p>Condition: {decodeWeatherCode(weather.weather_code)}</p>
+                <h2>Today</h2>
+                <p>Condition: {getDecodedWeather(weather.weather_code)}</p>
                 <p>Temperature: {weather.temperature_2m}°C</p>
                 <p>Feels like: {weather.apparent_temperature}°C</p>
-                <p>Precipitation: {weather.precipitation}mm</p>
+                <p>Rain: {weather.precipitation}mm</p>
             </div>
 
 

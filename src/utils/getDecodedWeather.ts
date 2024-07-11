@@ -29,6 +29,6 @@ const weatherCodeMap: { [key: number]: string } = {
     99: "Thunderstorm with heavy hail"
 };
 
-export const decodeWeatherCode = (code: number): string => {
+export const getDecodedWeather = (code: number): string => {
     return weatherCodeMap[code] || "Unknown weather condition";
 };

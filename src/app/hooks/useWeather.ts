@@ -4,8 +4,6 @@ import { WeatherData } from '../pages/WeatherPage/Weather.types';
 
 const API_URL = 'https://api.open-meteo.com/v1/forecast';
 
-// todo: add props interface
-
 const useWeather = (latitude: number, longitude: number) => {
     const [weather, setWeather] = useState<WeatherData | null>(null);
     const [error, setError] = useState<string | null>(null);

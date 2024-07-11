@@ -15,7 +15,7 @@ const useLocation = () => {
     const [error, setError] = useState<string | null>(null);
     const [permissionGranted, setPermissionGranted] = useState<boolean | null>(null);
     const [reloadKey, setReloadKey] = useState<number>(0);
-    // trigger re-render (the browser will do this, but this simplifies things for the user)
+    // manually trigger re-render via reloadKey (this simplifies things for the user and reduces lag)
 
     const getCurrentPosition = useCallback(() => {
         if (navigator.geolocation) {

@@ -29,7 +29,7 @@ export const Skeleton = styled.div<SkeletonProps>`
 interface Props {
     $isFairWeather?: boolean;
 }
-// TODO: Conditionally display background based on precipitation / other props
+
 export const Container = styled.div<Props>`
     display: flex;
     flex-wrap: nowrap;
@@ -38,7 +38,9 @@ export const Container = styled.div<Props>`
     background-position: center center;
     background-size: cover;
     // Not shorthanded for readability
+
     justify-content: center;
+    min-height: 100%;
 `
 
 export const WeatherContainer = styled.div`
@@ -46,10 +48,6 @@ export const WeatherContainer = styled.div`
     grid-template-rows: auto;
     gap: 8px;
     align-content: start;
-
-    // align-items: center;
-    // justify-content: space-between;
-    // padding: 16px;
     margin: 32px 16px;
     background: ${({ theme }) => theme.colors.CYAN_MEDIUM_80};
     color: ${({ theme }) => theme.colors.WHITE};

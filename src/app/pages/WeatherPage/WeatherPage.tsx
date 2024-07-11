@@ -42,39 +42,39 @@ const Weather = () => {
     return (
         <Styled.Container key={reloadKey} $isFairWeather={[0, 1].includes(weather?.current.weather_code ?? 0)} >
             <Styled.WeatherContainer>
+
                 <Styled.TopDateSettingsContainer>
                     <span>
                         <Styled.H1 aria-label={permissionGranted ? `Weather at your current location (Latitude: ${location.latitude}, Longitude: ${location.longitude})` : "Weather in London, default location due to permission not granted"}>Weather</Styled.H1>
                         <Styled.H2>{new Date().toLocaleDateString('en-GB', { weekday: 'long' }).toUpperCase()}</Styled.H2>
                     </span>
                 </Styled.TopDateSettingsContainer>
+
                 <Styled.MiddleDateLocationContainer>
                     <p>{today}</p>
                     <Styled.PinContainer>
                         <Styled.MapIcon />
                         {permissionGranted ?
-                            <p>Your Location</p> :
+                            <p>Your Current Location</p> :
                             <p>Default (London)</p>
                         }
                     </Styled.PinContainer>
                 </Styled.MiddleDateLocationContainer>
-                <WeatherCardComponent weather={todaysWeather} />
-                <Styled.TitleContainer>
 
+                <WeatherCardComponent weather={todaysWeather} />
+
+                <Styled.TitleContainer>
                     <Styled.H2>Your Next Few Days</Styled.H2>
                 </Styled.TitleContainer>
+
                 <Styled.ResponsiveGridContainer>
-                    {weather.daily.weather_code[1] && (
+                    {[1, 2,].map((i) =>
                         <Styled.MiniCardContainer>
-                            <WeatherCardComponent weather={generateSpecificDaysWeather(1)} variant="base" dayTitle={new Date(new Date().setDate(new Date().getDate() + 1)).toLocaleDateString('en-GB', { weekday: 'long' }).toUpperCase()} />
+                            <WeatherCardComponent weather={generateSpecificDaysWeather(i)} variant="base" dayTitle={new Date(new Date().setDate(new Date().getDate() + i)).toLocaleDateString('en-GB', { weekday: 'short' }).toUpperCase()} />
                         </Styled.MiniCardContainer>
                     )}
+                </Styled.ResponsiveGridContainer>
 
-                    {weather.daily.weather_code[1] && (
-                        <Styled.MiniCardContainer>
-                            <WeatherCardComponent weather={generateSpecificDaysWeather(2)} variant="base" dayTitle={new Date(new Date().setDate(new Date().getDate() + 2)).toLocaleDateString('en-GB', { weekday: 'long' }).toUpperCase()} />
-                        </Styled.MiniCardContainer>
-                    )}</Styled.ResponsiveGridContainer>
             </Styled.WeatherContainer>
         </Styled.Container>
     );

@@ -1,8 +1,8 @@
-import { getWeatherEmoji } from "@/utils/useWeatherCodeEmoji";
 import { useTheme } from "styled-components";
 
 import * as Styled from './WeatherIconComponent.styled'
-import { decodeWeatherCode } from "@/utils/weatherCodeDecoder";
+import { getDecodedWeather } from "../../../utils/getDecodedWeather";
+import { getWeatherEmoji } from "../../../utils/getWeatherEmoji";
 
 interface Props {
     weatherCode: number;
@@ -15,7 +15,7 @@ const WeatherIcon = ({ weatherCode, variant = "base" }: Props) => {
 
     return (
         <Styled.EmojiIcon
-            aria-label={`current-weather-icon-${decodeWeatherCode(weatherCode)}`}
+            aria-label={`Current Weather Icon ${getDecodedWeather(weatherCode)}`}
             color={theme.colors.WHITE}
             $variant={variant}
         >
