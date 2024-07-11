@@ -41,7 +41,13 @@ export const Container = styled.div<Props>`
 
     justify-content: center;
     min-height: 100%;
-    height: 100vh;
+    height: max-content;
+   
+
+    @media only screen and (min-width: 400px) {
+        height: 100vh;
+
+    }
 
 `
 
