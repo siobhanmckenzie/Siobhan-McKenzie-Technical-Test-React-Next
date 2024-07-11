@@ -1,5 +1,4 @@
 import styled, { keyframes } from 'styled-components';
-import { Cog8ToothIcon as HeroCogIcon } from "@heroicons/react/24/solid";
 
 interface SkeletonProps {
     $width?: string;
@@ -26,24 +25,21 @@ export const Skeleton = styled.div<SkeletonProps>`
   border-radius: 4px;
 `;
 
+interface Props {
+    $isFairWeather?: boolean;
+}
 // TODO: Conditionally display background based on precipitation / other props
-export const Container = styled.div`
+export const Container = styled.div<Props>`
     display: flex;
     flex-wrap: nowrap;
     grid-template-columns: 1fr;
-    background-image: url('/images/fair-unsplash-licensed.jpg');
+    background-image: url(${({ $isFairWeather }) => $isFairWeather ? '/images/fair-unsplash-licensed.jpg' : '/images/poor-unsplash-licensed.jpg'});
     background-position: center center;
     background-size: cover;
     // Not shorthanded for readability
     justify-content: center;
     height: 100%;
 `
-
-export const OffScreenHeader = styled.h1`
-    position: absolute;
-    left: -100000px;
-`
-
 
 export const WeatherContainer = styled.div`
     display: grid;
@@ -96,10 +92,3 @@ export const H2 = styled.h2`
     margin: 0;
 `
 
-export const CogIcon = styled(HeroCogIcon)`
-  width: 24px;
-  height: 24px;
-  color: ${({ theme }) => theme.colors.WHITE};
-  cursor: pointer;
-
-`;

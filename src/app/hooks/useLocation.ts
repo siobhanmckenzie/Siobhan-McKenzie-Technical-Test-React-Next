@@ -14,6 +14,8 @@ const useLocation = () => {
     const [location, setLocation] = useState<Location>(defaultLocation);
     const [error, setError] = useState<string | null>(null);
     const [permissionGranted, setPermissionGranted] = useState<boolean | null>(null);
+    const [reloadKey, setReloadKey] = useState<number>(0);
+    // trigger re-render (the browser will do this, but this simplifies things for the user)
 
     const getCurrentPosition = useCallback(() => {
         if (navigator.geolocation) {
@@ -24,6 +26,7 @@ const useLocation = () => {
                         longitude: position.coords.longitude
                     });
                     setPermissionGranted(true);
+                    setReloadKey(prevKey => prevKey + 1);
                 },
                 (err) => {
                     setError('Unable to retrieve location');
@@ -43,7 +46,7 @@ const useLocation = () => {
 
     const memoisedLocation = useMemo(() => location, [location]);
 
-    return { location: memoisedLocation, setLocation, error, permissionGranted };
+    return { location: memoisedLocation, setLocation, error, permissionGranted, setPermissionGranted, reloadKey };
 };
 
 export default useLocation;

@@ -1,38 +1,23 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import useWeather from '../../hooks/useWeather';
 import * as Styled from './Weather.styled';
-import { Props } from './Weather.props';
-import { useForm, SubmitHandler } from "react-hook-form";
 import useLocation from '@/app/hooks/useLocation';
-import { LocationDialog } from '../LocationDialog';
+import { decodeWeatherCode } from '@/utils/weatherCodeDecoder';
 
-type Inputs = { // react-hook-forms placeholder
-    example: string,
-    exampleRequired: string,
-};
 
 const Weather = () => {
-    const { location, setLocation, permissionGranted } = useLocation();
-    const [showDialog, setShowDialog] = useState<boolean>(false);
+    const { location, permissionGranted, reloadKey } = useLocation();
     const { weather, error, loading } = useWeather(location.latitude, location.longitude);
 
-    useEffect(() => {
-        if (permissionGranted === false) {
-            setShowDialog(true);
-        }
-    }, [permissionGranted]);
+    console.log(weather);
 
-    const handleSetLocation = useCallback((latitude: number, longitude: number) => {
-        setLocation({ latitude, longitude });
-        setShowDialog(false);
-    }, [setLocation]);
+    // TODO: refactor this inside the useWeather look
 
-    console.log("permissionGranted", permissionGranted)
-
-    // start placeholdering an input field
-    const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>();
-    const onSubmit: SubmitHandler<Inputs> = data => console.log(data);
-
+    const today = useMemo(() => new Date().toLocaleDateString('en-GB', {
+        day: '2-digit',
+        month: 'long',
+        year: 'numeric'
+    }), []);
 
     if (loading) {
         return <WeatherSkeleton />;
@@ -42,48 +27,56 @@ const Weather = () => {
         return <div>Error: {error}</div>;
     }
 
-    // TODO: Add react hook form
-    // TODO add context
-
-    // Could add: translations
+    // Could add translations
+    // TODO: accessibility
 
     return (
-        <>
-            <Styled.Container>
+        <Styled.Container key={reloadKey} $isFairWeather={[0, 1, 2, 3].includes(weather?.current.weather_code ?? 0)} >
+            <Styled.WeatherContainer>
 
-                <Styled.WeatherContainer>
-                    {/* TODO: need to update this h1 content */}
-                    <Styled.OffScreenHeader>Weather at your location</Styled.OffScreenHeader>
-                    <Styled.TopDateSettingsContainer>
+                <Styled.TopDateSettingsContainer>
+                    <span>
                         <Styled.H2>{new Date().toLocaleDateString('en-GB', { weekday: 'long' }).toUpperCase()}</Styled.H2>
-                        {/* borrowed this off-screen header setup from https://www.metoffice.gov.uk/ */}
-                        <Styled.CogIcon />
-                    </Styled.TopDateSettingsContainer>
-                    <Styled.MiddleDateLocationContainer>
 
-                        <p>date swiper</p>
-                        {showDialog && (
-                            <LocationDialog location={location} onSetLocation={handleSetLocation} />
-                        )}
+                        {/*  TODO: Address page reload */}
+                        {!permissionGranted &&
+                            <p>You haven't set your location, so your default location is set to London</p>
+                        }
+                    </span>
+                </Styled.TopDateSettingsContainer>
+                <Styled.MiddleDateLocationContainer>
+                    <p>{today}</p>
+                </Styled.MiddleDateLocationContainer>
 
-                    </Styled.MiddleDateLocationContainer>
-                    <h2>Weather at your location lat: {location.latitude} long: {location.longitude}</h2>
-                    {/* {weather.hourly.time.map((time: Date, index: number) => (
-                    <div key={index}>
-                        <p>Time: {time.toISOString()}</p>
-                        <p>Temperature: {weather.hourly.temperature2m[index]}°C</p>
-                    </div>
-                ))} */}
-                </Styled.WeatherContainer>
-            </Styled.Container>
-        </>
+                {/* TODO: refactor into a card */}
+
+                <Styled.ResponsiveGridContainer>
+                    <span>
+                        <h1 aria-label={permissionGranted ? `Weather at your current location (Latitude: ${location.latitude}, Longitude: ${location.longitude})` : "Weather in London, default location due to permission not granted"}>Weather</h1>
+                        {/* <WeatherIconComponent weatherCode={weather?.current.weather_code ?? 0} /> */}
+
+                    </span>
+                    {weather?.current ? (
+                        <div>
+                            <p>Time: {new Date(weather.current.time).toLocaleString()}</p>
+                            <p>Condition: {decodeWeatherCode(weather.current.weather_code)}</p>
+                            <p>Temperature: {weather.current.temperature_2m}°C</p>
+                            <p>Feels like: {weather.current.apparent_temperature}°C</p>
+                            <p>Precipitation: {weather.current.precipitation}mm</p>
+                        </div>
+                    ) : (
+                        <p>No data available</p>
+                    )}
+                </Styled.ResponsiveGridContainer>
+            </Styled.WeatherContainer>
+        </Styled.Container>
     );
 };
 
 const WeatherSkeleton = () => {
     return (
         <Styled.Skeleton $width="400px" $height="600px" />
-    )
-}
+    );
+};
 
 export default Weather;
