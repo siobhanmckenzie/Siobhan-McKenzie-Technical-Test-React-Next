@@ -9,7 +9,7 @@ In this technical test, I've considered various aspects including accessibility,
 - **Performance**: Focused on optimising the React performance, however I haven't implemented certain production-ready features such as caching. I de-scoped an input field that would allow you to input your location and then send it - this is the sort of area that would particularly need optimising for performance - users would expect autocomplete for L to pop up with a list containing London / las Vegas / Lisbon etc, which would need to be managed efficiently.
 - **Design Compliance**: Crated a Canva design to frame my approach and keep scope focused. it's not pixel perfect as i'd expect from a Figma handover, however it is a quick and easy way for me to mock things up (this took me minutes to put together)
 
-https://www.canva.com/design/DAGKcUFkSl0/atfY8W3ZrpLLUv-jUITcbA/view?mode=prototype#mvp-version
+https://www.canva.com/design/DAGKcUFkSl0/atfY8W3ZrpLLUv-jUITcbA/view?mode=prototype
 
 
 ## Learning
