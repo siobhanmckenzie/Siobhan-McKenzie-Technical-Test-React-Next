@@ -9,6 +9,11 @@ In this technical test, I've considered various aspects including accessibility,
 - **Performance**: Focused on optimising the React performance, however I haven't implemented certain production-ready features such as caching. I de-scoped an input field that would allow you to input your location and then send it - this is the sort of area that would particularly need optimising for performance - users would expect autocomplete for L to pop up with a list containing London / las Vegas / Lisbon etc, which would need to be managed efficiently.
 - **Design Compliance**: Crated a Canva design to frame my approach and keep scope focused, however I needed to make some scope adjustments as work continued as to not overrun on time. If I had implemented the searchable location, I'd have needed to integrate another API which was beyond the scope of this technical test.
 
+This is the original Design: https://www.canva.com/design/DAGKcUFkSl0/atfY8W3ZrpLLUv-jUITcbA/view?mode=prototype
+
+This is the de-scoped: MVP version - https://www.canva.com/design/DAGKcUFkSl0/atfY8W3ZrpLLUv-jUITcbA/view?mode=prototype#mvp-version
+
+
 ## Learning
 
 This technical test was used as an opportunity to learn more about the browsers default Geolocation interface https://developer.mozilla.org/en-US/docs/Web/API/Geolocation

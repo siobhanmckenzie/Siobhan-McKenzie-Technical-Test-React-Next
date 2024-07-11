@@ -38,6 +38,7 @@ const WeatherPage = () => {
 
 
     return (
+        // the background will change depending on the weather - currently it switches between two options
         <Styled.Container key={reloadKey} $isFairWeather={[0, 1].includes(weather?.current.weather_code ?? 0)} >
             <Styled.WeatherContainer>
 
